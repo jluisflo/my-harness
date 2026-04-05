@@ -302,17 +302,23 @@ Este harness está diseñado para el siguiente entorno de trabajo:
 
 Decisiones tomadas durante la construcción del harness, documentadas para contexto futuro.
 
-### Skills como archivos separados, no embebidos en CLAUDE.md
+### AGENTS.md como formato estándar, no CLAUDE.md
 
-Los skills (git-commit, test-generator, build-check, etc.) viven en `skills/` como archivos independientes que se cargan on-demand. El CLAUDE.md de cada agente no debe sobrecargarse — define rol y reglas, no procedimientos detallados.
+Las definiciones de agentes usan el formato [agents.md](https://agents.md/) — un estándar abierto bajo la Linux Foundation, compatible con Claude, Codex, Gemini, Copilot, Cursor, Zed, Aider y 20+ herramientas. Cada agente tiene frontmatter YAML (`name`, `description`) y boundaries en tres niveles (always, ask first, never).
+
+**Razón:** El harness debe ser agnóstico al proveedor de IA. agents.md es el estándar cross-tool que evita acoplamiento a un vendor específico y permite que cualquier equipo adopte el harness sin importar qué herramienta use.
+
+### Skills como archivos separados, no embebidos en AGENTS.md
+
+Los skills (git-commit, test-generator, build-check, etc.) viven en `skills/` como archivos independientes que se cargan on-demand. El AGENTS.md de cada agente no debe sobrecargarse — define rol y reglas, no procedimientos detallados.
 
 **Razón:** Alineado con el principio 5 (contexto on-demand) y con la perspectiva de Zach Lloyd sobre skills vs. archivos masivos de contexto.
 
-### Un CLAUDE.md por proyecto para el builder, no global
+### Un AGENTS.md por proyecto para el builder, no global
 
-Cada proyecto donde trabaje un builder tiene su propio CLAUDE.md que extiende el template base con convenciones específicas del stack, estructura de carpetas, y patrones del proyecto.
+Cada proyecto donde trabaje un builder tiene su propio AGENTS.md que extiende el template base con las convenciones específicas del stack, la estructura de carpetas, y los patrones del proyecto.
 
-**Razón:** .NET, Flutter, JS y Python tienen convenciones incompatibles. Un CLAUDE.md global no puede encapsular las particularidades de cada uno sin convertirse en un monolito.
+**Razón:** .NET, Flutter, JS y Python tienen convenciones incompatibles. Un AGENTS.md global no puede encapsular las particularidades de cada uno sin convertirse en un monolito.
 
 ### Contrato de interfaz como sección de TECH.md, no archivo separado
 
@@ -342,11 +348,11 @@ jl-harness/
 ├── MANIFESTO.md              ← Este documento
 ├── agents/
 │   ├── planner/
-│   │   └── CLAUDE.md         ← Instrucciones del planner
+│   │   └── AGENTS.md         ← Instrucciones del planner (formato agents.md)
 │   ├── builder/
-│   │   └── CLAUDE.md         ← Template base (se copia y adapta por proyecto)
+│   │   └── AGENTS.md         ← Template base (se copia y adapta por proyecto)
 │   └── reviewer/
-│       └── CLAUDE.md         ← Instrucciones del reviewer
+│       └── AGENTS.md         ← Instrucciones del reviewer
 ├── skills/
 │   ├── git-commit.md         ← Commits atómicos, convención de mensajes
 │   ├── test-generator.md     ← Generar tests alineados a criterios de aceptación
