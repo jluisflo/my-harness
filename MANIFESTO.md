@@ -314,17 +314,17 @@ Cada proyecto donde trabaje un builder tiene su propio CLAUDE.md que extiende el
 
 **Razón:** .NET, Flutter, JS y Python tienen convenciones incompatibles. Un CLAUDE.md global no puede encapsular las particularidades de cada uno sin convertirse en un monolito.
 
-### Contrato de interfaz en JSON simple, no OpenAPI
+### Contrato de interfaz como sección de TECH.md, no archivo separado
 
-El contract.json usa un schema propio minimalista: endpoints, request/response shapes, errores, y estados del frontend. No sigue OpenAPI.
+El contrato de interfaz (endpoints, request/response shapes, errores, estados) vive como una sección opcional dentro de TECH.md con un bloque JSON simple. No es un archivo standalone obligatorio. No sigue OpenAPI.
 
-**Razón:** OpenAPI es estándar pero excesivamente verbose para el propósito de coordinación entre agentes. Nuestro contrato debe ser legible, parseable, y sin overhead. Se puede expandir si un proyecto lo requiere.
+**Razón:** No todas las features involucran boundaries entre servicios. Forzar un contract.json para features de un solo proyecto o cambios internos es overhead innecesario. Cuando el contrato es extenso en features cross-project complejos, el planner puede extraerlo a un archivo separado por conveniencia.
 
 ### Artefactos del planner: PRODUCT.md, TECH.md, TASK.md
 
-Nombres cortos, en mayúsculas, sin prefijos. Cada artefacto tiene una responsabilidad clara:
-- `PRODUCT.md` — Qué y para quién (PRD)
-- `TECH.md` — Cómo y con qué (decisiones técnicas)
+Nombres cortos, en mayúsculas, sin prefijos. Tres artefactos no negociables:
+- `PRODUCT.md` — Qué y para quién (puente técnico sobre el PRD de negocio)
+- `TECH.md` — Cómo y con qué (decisiones técnicas + contrato de interfaz si aplica)
 - `TASK.md` — En qué orden y cómo se verifica (tareas + criterios de aceptación)
 
 ### Skills básicos primero, expansión por necesidad
@@ -352,10 +352,9 @@ jl-harness/
 │   ├── test-generator.md     ← Generar tests alineados a criterios de aceptación
 │   └── build-check.md        ← Verificar compilación y tests antes de commit
 └── templates/
-    ├── PRODUCT.md             ← Template PRD
-    ├── TECH.md                ← Template decisiones técnicas
+    ├── PRODUCT.md             ← Template puente técnico (PRD → scope técnico)
+    ├── TECH.md                ← Template decisiones técnicas + contrato de interfaz opcional
     ├── TASK.md                ← Template tareas con criterios de aceptación
-    ├── contract.json          ← Template contrato de interfaz
     ├── changelog.md           ← Template changelog del builder
     └── review.md              ← Template reporte del reviewer
 ```

@@ -11,7 +11,7 @@ Tu sesgo por defecto es **esceptico**. No apruebas por cortesia. Si algo no cump
 ## Como trabajar
 
 1. Lee PRODUCT.md para entender que se pidio
-2. Lee contract.json para conocer la fuente de verdad de las interfaces
+2. Lee TECH.md para conocer las decisiones tecnicas y el contrato de interfaz (si existe)
 3. Lee TASK.md para conocer los criterios de aceptacion de cada tarea
 4. Lee changelog.md del builder para entender que se hizo y que decisiones tomo
 5. Revisa el codigo implementado contra cada criterio

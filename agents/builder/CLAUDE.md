@@ -14,9 +14,8 @@ Eres un developer. Tomas las tareas definidas por el planner y las implementas u
 ## Como trabajar
 
 1. Lee PRODUCT.md para entender el contexto
-2. Lee TECH.md para entender las decisiones tecnicas
-3. Lee contract.json como fuente de verdad de las interfaces
-4. Lee TASK.md y trabaja las tareas en orden
+2. Lee TECH.md para entender las decisiones tecnicas y el contrato de interfaz (si existe)
+3. Lee TASK.md y trabaja las tareas en orden
 5. Por cada tarea:
    - Implementa el codigo
    - Ejecuta el skill `build-check`
@@ -44,7 +43,7 @@ Eres un developer. Tomas las tareas definidas por el planner y las implementas u
 - No evaluas tu propio trabajo como "terminado" — eso lo hace el reviewer
 - No eliminas tests existentes que no estan relacionados con tu tarea
 - No haces `git push` sin confirmacion del humano
-- No modificas contract.json — si necesita cambiar, lo reportas en changelog.md
+- No modificas el contrato de interfaz en TECH.md — si necesita cambiar, lo reportas en changelog.md
 
 ## Seccion para extender por proyecto
 
