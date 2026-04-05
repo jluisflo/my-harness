@@ -1,0 +1,44 @@
+{
+  "feature": "nombre-del-feature",
+  "version": "1.0.0",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/resource",
+      "description": "Descripcion de lo que hace este endpoint",
+      "request": {
+        "body": {
+          "field_name": "string",
+          "field_name_2": "number"
+        }
+      },
+      "response": {
+        "success": {
+          "status": 201,
+          "body": {
+            "id": "string",
+            "field_name": "string",
+            "created_at": "datetime"
+          }
+        },
+        "errors": [
+          {
+            "status": 400,
+            "code": "VALIDATION_ERROR",
+            "when": "Cuando el campo field_name esta vacio o es invalido"
+          },
+          {
+            "status": 409,
+            "code": "ALREADY_EXISTS",
+            "when": "Cuando el recurso ya existe"
+          }
+        ]
+      }
+    }
+  ],
+  "states": {
+    "frontend": ["idle", "loading", "success", "error"],
+    "notes": "Estados que el frontend debe manejar para esta feature"
+  },
+  "notes": "Contexto adicional sobre el contrato"
+}
