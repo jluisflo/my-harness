@@ -1,12 +1,12 @@
 # PRODUCT — [Nombre del feature]
 
-## Resumen
+## PRD de origen
 
-(1-3 oraciones: que es este feature y por que existe)
+(Referencia al PRD de negocio: ruta del archivo, link, o "N/A — iniciativa tecnica interna")
 
-## Contexto
+## Interpretacion tecnica
 
-(Que problema resuelve. Que motivó este trabajo.)
+(Como el planner interpreta el PRD de negocio y lo traduce a scope tecnico. Si no hay PRD, este es el resumen de la intencion del developer.)
 
 ## Usuarios objetivo
 
@@ -31,6 +31,11 @@
 ## Asunciones
 
 - (Cosas que asumimos como ciertas y que, si cambian, afectan el plan)
+
+## Preguntas para negocio
+
+- (Ambiguedades del PRD que necesitan respuesta antes de avanzar)
+- (Si no hay preguntas, eliminar esta seccion)
 
 ## Dependencias externas
 

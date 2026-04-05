@@ -197,26 +197,40 @@ El humano define qué construir (intención), valida los contratos (acuerdos), y
 
 ## Workflow propuesto
 
+### El PRD de negocio como input
+
+El workflow asume que negocio o producto entrega un PRD describiendo lo que necesita. Este PRD es el artefacto de ellos y no se modifica — es la fuente de verdad de intención de negocio.
+
+El planner lee el PRD de negocio y genera un PRODUCT.md que actúa como **puente técnico**: traduce la visión de negocio a scope técnico, documenta asunciones, señala ambigüedades, y define qué queda fuera de scope desde la perspectiva de implementación. Si el planner tiene preguntas que negocio debe responder antes de avanzar, las documenta en PRODUCT.md.
+
+El humano (developer) valida el PRODUCT.md como checkpoint de alineación antes de que se generen los artefactos técnicos (TECH.md, TASK.md, contract.json).
+
+Si no hay PRD de negocio (ej: una mejora técnica interna), el planner genera PRODUCT.md desde una intención de 1-5 oraciones, como en el flujo original.
+
+### El ciclo
+
 ```
 ┌─────────────────────────────────────────────────────┐
-│                    HUMANO                            │
-│         Define intención (1-4 oraciones)             │
+│              NEGOCIO / PRODUCTO                      │
+│          Entrega PRD con la intención                │
+│    (o el developer define intención en 1-5 lineas)   │
 └──────────────────────┬──────────────────────────────┘
                        │
                        ▼
 ┌─────────────────────────────────────────────────────┐
 │                  1. SPEC                             │
-│  Agente expande intención → spec completa            │
-│  Incluye: funcionalidad, contratos de interfaz,      │
-│  criterios de aceptación, plan por proyecto          │
+│  Planner lee PRD de negocio → genera:                │
+│  PRODUCT.md (puente técnico + preguntas)             │
+│  TECH.md, contract.json, TASK.md                     │
 └──────────────────────┬──────────────────────────────┘
                        │
                        ▼
 ┌─────────────────────────────────────────────────────┐
 │              HUMANO VALIDA SPEC                      │
-│    ¿La spec refleja la intención correctamente?      │
+│    ¿PRODUCT.md refleja correctamente el PRD?         │
 │    ¿Los contratos de interfaz son correctos?         │
 │    ¿Los criterios de aceptación son suficientes?     │
+│    ¿Hay preguntas que negocio debe responder?        │
 └──────────────────────┬──────────────────────────────┘
                        │
                        ▼
