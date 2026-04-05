@@ -359,6 +359,30 @@ jl-harness/
     └── review.md              ← Template reporte del reviewer
 ```
 
+### Artefactos por feature
+
+Los templates se instancian **por feature**. Cada feature que se trabaje con el harness genera su propio directorio con los artefactos del planner, builder y reviewer. Esto da trazabilidad completa: cualquier developer puede abrir el directorio de una feature y entender qué se pidió, qué se decidió, qué se construyó, y qué se encontró en cada ronda.
+
+Ejemplo de estructura generada para una feature:
+
+```
+features/
+└── nombre-del-feature/
+    ├── PRODUCT.md              ← Generado por el planner
+    ├── TECH.md                 ← Generado por el planner
+    ├── TASK.md                 ← Generado por el planner
+    ├── build/
+    │   ├── round-1/
+    │   │   ├── changelog.md    ← Generado por el builder
+    │   │   └── review.md       ← Generado por el reviewer
+    │   └── round-2/
+    │       ├── changelog.md
+    │       └── review.md
+    └── final-review.md         ← Review final consolidado (si aplica)
+```
+
+La ubicación del directorio `features/` queda a decisión del equipo o proyecto. Puede vivir dentro del repo del proyecto, en un repo de documentación, o donde el equipo acuerde.
+
 ---
 
 ## Pendiente de construcción
