@@ -177,7 +177,7 @@ En features cross-project, el artefacto más importante es el contrato que defin
 
 ### Principio 5: Contexto on-demand, no contexto masivo
 
-La información de proyecto se carga como "skills" enfocadas cuando el agente la necesita, no como un archivo monolítico que consume tokens genéricos. Un CLAUDE.md base define las reglas; la especificidad viene de los artefactos del feature.
+La información de proyecto se carga como "skills" enfocadas cuando el agente la necesita, no como un archivo monolítico que consume tokens genéricos. Un AGENTS.md base define las reglas; la especificidad viene de los artefactos del feature.
 
 **Razón:** Cada token de contexto desperdiciado en información irrelevante es un token menos para resolver el problema actual.
 
@@ -221,7 +221,7 @@ Si no hay PRD de negocio (ej: una mejora técnica interna), el planner genera PR
 │                  1. SPEC                             │
 │  Planner lee PRD de negocio → genera:                │
 │  PRODUCT.md (puente técnico + preguntas)             │
-│  TECH.md, contract.json, TASK.md                     │
+│  TECH.md (+ contrato si aplica), TASK.md             │
 └──────────────────────┬──────────────────────────────┘
                        │
                        ▼
@@ -401,7 +401,7 @@ La ubicación del directorio `features/` queda a decisión del equipo o proyecto
 Estos componentes se agregarán cuando un proyecto real los necesite:
 
 1. **Skills específicos por stack** — .NET, Flutter, JS, Python
-2. **CLAUDE.md especializados por stack** — Extensiones del builder base
+2. **AGENTS.md especializados por stack** — Extensiones del builder base para cada tecnología
 3. **Automatización de orquestación** — Scripts o hooks para coordinar el ciclo SPEC → BUILD → VERIFY
 4. **Guía de adopción** — Instrucciones paso a paso para aplicar el harness a un proyecto existente
 
@@ -418,3 +418,6 @@ Estos componentes se agregarán cuando un proyecto real los necesite:
 - [MetalBear: Testing is the New Bottleneck](https://metalbear.com/blog/testing-bottleneck-ai/)
 - [InfoQ: AI Coding Assistants Haven't Sped up Delivery](https://www.infoq.com/news/2026/03/agoda-ai-code-bottleneck/)
 - [Fortune: Trust is the Real Bottleneck in AI Coding](https://fortune.com/2026/04/02/in-the-age-of-vibe-coding-trust-is-the-real-bottleneck/)
+- [agents.md: Open Standard for AI Coding Agents](https://agents.md/) — Linux Foundation / Agentic AI Foundation
+- [Agent Skills Specification (SKILL.md)](https://agentskills.io/specification) — Anthropic / Open Standard
+- [GitHub: How to Write a Great agents.md](https://github.blog/ai-and-ml/github-copilot/how-to-write-a-great-agents-md-lessons-from-over-2500-repositories/)
