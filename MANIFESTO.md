@@ -308,11 +308,13 @@ Las definiciones de agentes usan el formato [agents.md](https://agents.md/) — 
 
 **Razón:** El harness debe ser agnóstico al proveedor de IA. agents.md es el estándar cross-tool que evita acoplamiento a un vendor específico y permite que cualquier equipo adopte el harness sin importar qué herramienta use.
 
-### Skills como archivos separados, no embebidos en AGENTS.md
+### Skills en formato SKILL.md estándar, no embebidos en AGENTS.md
 
-Los skills (git-commit, test-generator, build-check, etc.) viven en `skills/` como archivos independientes que se cargan on-demand. El AGENTS.md de cada agente no debe sobrecargarse — define rol y reglas, no procedimientos detallados.
+Los skills usan el formato [Agent Skills](https://agentskills.io/specification) — un estándar abierto creado por Anthropic y adoptado por 30+ herramientas. Cada skill es un directorio con un `SKILL.md` (frontmatter YAML con `name` y `description` + instrucciones en Markdown). El AGENTS.md de cada agente no debe sobrecargarse — define rol y reglas, no procedimientos detallados.
 
-**Razón:** Alineado con el principio 5 (contexto on-demand) y con la perspectiva de Zach Lloyd sobre skills vs. archivos masivos de contexto.
+El estándar usa **progressive disclosure**: al inicio solo se cargan name + description (~100 tokens por skill); el body completo se carga solo cuando la tarea matchea; scripts y references se cargan on-demand.
+
+**Razón:** Alineado con el principio 5 (contexto on-demand), con la perspectiva de Zach Lloyd sobre skills vs. archivos masivos de contexto, y con el objetivo de mantener el harness agnóstico al proveedor de IA.
 
 ### Un AGENTS.md por proyecto para el builder, no global
 
@@ -354,9 +356,12 @@ jl-harness/
 │   └── reviewer/
 │       └── AGENTS.md         ← Instrucciones del reviewer
 ├── skills/
-│   ├── git-commit.md         ← Commits atómicos, convención de mensajes
-│   ├── test-generator.md     ← Generar tests alineados a criterios de aceptación
-│   └── build-check.md        ← Verificar compilación y tests antes de commit
+│   ├── git-commit/
+│   │   └── SKILL.md          ← Commits atómicos, convención de mensajes
+│   ├── test-generator/
+│   │   └── SKILL.md          ← Generar tests alineados a criterios de aceptación
+│   └── build-check/
+│       └── SKILL.md          ← Verificar compilación y tests antes de commit
 └── templates/
     ├── PRODUCT.md             ← Template puente técnico (PRD → scope técnico)
     ├── TECH.md                ← Template decisiones técnicas + contrato de interfaz opcional
